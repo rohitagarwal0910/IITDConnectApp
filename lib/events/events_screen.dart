@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-import './event_list.dart';
+import './today.dart';
+import './tomorrow.dart';
+import './upcoming.dart';
 
 // dummy event class and two dummy events
 
@@ -35,8 +37,12 @@ var uy = [dummyEvent, dummyEvent2];
 class EventsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: EventList(events)
+    return PageView(
+      children: <Widget>[
+        TodayPage(events),
+        TomorrowPage(events),
+        UpcomingPage(events),
+      ],
     );
   }
 }

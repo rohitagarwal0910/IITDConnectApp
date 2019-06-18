@@ -8,6 +8,8 @@ class EventList extends StatelessWidget {
 
   EventList(this.events);
 
+  //TODO: implement EventList as ListView
+
   @override
   Widget build(BuildContext context) {
     return Column(

@@ -15,11 +15,15 @@ class EventCard extends StatefulWidget {
 
 class EventCardState extends State<EventCard> {
   Event _event;
-  Icon _icon = Icon(Icons.star_border);
+  Icon _icon;
 
   @override
   void initState() {
     _event = widget.event;
+    if (_event.isStarred)
+      _icon = Icon(Icons.star);
+    else
+      _icon = Icon(Icons.star_border);
     super.initState();
   }
 
@@ -40,7 +44,11 @@ class EventCardState extends State<EventCard> {
           GestureDetector(
             onTap: () {
               setState(() {
-                _icon = Icon(Icons.star);
+                _event.isStarred = !_event.isStarred; //To be changed by API Call
+                if (_event.isStarred)
+                  _icon = Icon(Icons.star);
+                else
+                  _icon = Icon(Icons.star_border);
               });
             },
             child: _icon,
