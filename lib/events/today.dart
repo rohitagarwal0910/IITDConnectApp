@@ -10,13 +10,13 @@ class TodayPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: <Widget>[
-          Text('TODAY'),
-          EventList(events),
-        ],
-      ),
+    return Column(
+      children: <Widget>[
+        Text('TODAY'),
+        Expanded(
+          child: EventList(events),
+        ),
+      ],
     );
   }
 }

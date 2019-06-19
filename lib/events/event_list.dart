@@ -4,16 +4,19 @@ import './events_screen.dart';
 import './event_card.dart';
 
 class EventList extends StatelessWidget {
-  final List<Event> events;
+  final List<Event> _events;
 
-  EventList(this.events);
-
-  //TODO: implement EventList as ListView
+  EventList(this._events);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: events.map((element) => EventCard(element)).toList(),
+    return ListView.builder(
+      key: PageStorageKey(''),
+      itemCount: _events.length,
+      padding: const EdgeInsets.all(8.0),
+      itemBuilder: (BuildContext context, int index) {
+        return EventCard(_events[index]);
+      },
     );
   }
 }

@@ -10,13 +10,13 @@ class UpcomingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: <Widget>[
-          Text('UPCOMING'),
-          EventList(events),
-        ],
-      ),
+    return Column(
+      children: <Widget>[
+        Text('UPCOMING'),
+        Expanded(
+          child: EventList(events),
+        ),
+      ],
     );
   }
 }
