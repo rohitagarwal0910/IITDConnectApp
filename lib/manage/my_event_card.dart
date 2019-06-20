@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
+import '../events/events_tab.dart';
+import '../events/event_info.dart';
 
-import './events_tab.dart';
-import './event_info.dart';
-
-class EventCard extends StatefulWidget {
+class MyEventCard extends StatefulWidget {
   final Event _event;
 
-  EventCard(this._event);
+  MyEventCard(this._event);
 
   @override
   State<StatefulWidget> createState() {
-    return EventCardState();
+    return MyEventCardState();
   }
 }
 
-class EventCardState extends State<EventCard> {
+class MyEventCardState extends State<MyEventCard> {
   Event _event;
   Icon _icon;
 

@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
 
-class ManageTab extends StatelessWidget {
-  final String title = 'My Events';
+import './my_events_list.dart';
+import '../events/events_tab.dart';
 
+class ManageTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(25),
-      child: Text('My Event List Here'),
+    return Column(
+      children: <Widget>[
+        FlatButton(
+          onPressed: () {},
+          child: Text('Add Event'),
+        ),
+        Expanded(
+          child: MyEventsList(events),
+        ),
+      ],
     );
   }
 }

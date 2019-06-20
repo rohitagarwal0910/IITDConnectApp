@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import './events_tab.dart';
 import './event_card.dart';
 
-class EventList extends StatelessWidget {
+class EventsList extends StatelessWidget {
   final List<Event> _events;
   final String _key;
 
-  EventList(this._events, this._key);
+  EventsList(this._events, this._key);
 
   @override
   Widget build(BuildContext context) {

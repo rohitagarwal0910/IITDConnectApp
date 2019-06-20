@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import './events_tab.dart';
-import './event_list.dart';
+import './events_list.dart';
 
 class EventsPage extends StatelessWidget {
   final List<Event> _events;
@@ -15,7 +15,7 @@ class EventsPage extends StatelessWidget {
       children: <Widget>[
         Text(_title),
         Expanded(
-          child: EventList(_events, _title),
+          child: EventsList(_events, _title),
         ),
       ],
     );
