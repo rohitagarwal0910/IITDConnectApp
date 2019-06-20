@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './events/events_screen.dart';
+import './events/events_tab.dart';
 import './clubs_screen.dart';
 import './manage_events.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './events_screen.dart';
+import './events_tab.dart';
 
 class EventCard extends StatefulWidget {
   final Event event;

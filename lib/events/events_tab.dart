@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './today.dart';
-import './tomorrow.dart';
-import './upcoming.dart';
+import './events_page.dart';
 
 // dummy event class and two dummy events
 
@@ -89,11 +87,11 @@ class EventsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PageView(
-      key: PageStorageKey('value'),
+      key: PageStorageKey('EventsPageView'),
       children: <Widget>[
-        TodayPage(events),
-        TomorrowPage(events),
-        UpcomingPage(events),
+        TodayPage(events, 'TODAY'),
+        TodayPage(events, 'TOMORROW'),
+        TodayPage(events, 'UPCOMING'),
       ],
     );
   }

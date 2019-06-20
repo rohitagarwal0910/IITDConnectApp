@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import './events_screen.dart';
+import './events_tab.dart';
 import './event_list.dart';
 
 class TodayPage extends StatelessWidget {
   final List<Event> events;
-  final String title = "TODAY";
+  final String title;
 
-  TodayPage(this.events);
+  TodayPage(this.events, this.title);
 
   @override
   Widget build(BuildContext context) {
