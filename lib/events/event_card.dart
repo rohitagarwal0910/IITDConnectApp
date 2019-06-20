@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import './events_tab.dart';
 
 class EventCard extends StatefulWidget {
-  final Event event;
+  final Event _event;
 
-  EventCard(this.event);
+  EventCard(this._event);
 
   @override
   State<StatefulWidget> createState() {
@@ -19,7 +19,7 @@ class EventCardState extends State<EventCard> {
 
   @override
   void initState() {
-    _event = widget.event;
+    _event = widget._event;
     if (_event.isStarred)
       _icon = Icon(Icons.star);
     else

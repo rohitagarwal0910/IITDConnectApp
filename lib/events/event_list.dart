@@ -5,14 +5,14 @@ import './event_card.dart';
 
 class EventList extends StatelessWidget {
   final List<Event> _events;
-  final String skey;
+  final String _key;
 
-  EventList(this._events, this.skey);
+  EventList(this._events, this._key);
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      key: PageStorageKey(skey),
+      key: PageStorageKey(_key),
       itemCount: _events.length,
       padding: const EdgeInsets.all(8.0),
       itemBuilder: (BuildContext context, int index) {

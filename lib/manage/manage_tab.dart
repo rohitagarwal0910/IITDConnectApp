@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class MyEventsPage extends StatelessWidget {
+class ManageTab extends StatelessWidget {
   final String title = 'My Events';
 
   @override

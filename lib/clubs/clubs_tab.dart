@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ClubsPage extends StatelessWidget {
+class ClubsTab extends StatelessWidget {
   final String title = 'Clubs';
 
   @override
