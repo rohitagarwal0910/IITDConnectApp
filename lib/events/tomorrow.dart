@@ -5,6 +5,7 @@ import './event_list.dart';
 
 class TomorrowPage extends StatelessWidget {
   final List<Event> events;
+  final String title = "TOMORROW";
 
   TomorrowPage(this.events);
 
@@ -12,9 +13,9 @@ class TomorrowPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Text('TOMORROW'),
+        Text(title),
         Expanded(
-          child: EventList(events),
+          child: EventList(events, title),
         ),
       ],
     );

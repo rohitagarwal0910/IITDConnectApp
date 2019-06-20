@@ -5,16 +5,16 @@ import './event_list.dart';
 
 class UpcomingPage extends StatelessWidget {
   final List<Event> events;
-
+  final String title = "UPCOMING";
   UpcomingPage(this.events);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Text('UPCOMING'),
+        Text(title),
         Expanded(
-          child: EventList(events),
+          child: EventList(events, title),
         ),
       ],
     );

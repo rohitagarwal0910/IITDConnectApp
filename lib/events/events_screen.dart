@@ -85,8 +85,6 @@ var dummyEvent10 = Event(
 
 List<Event> events = [dummyEvent, dummyEvent2, dummyEvent3, dummyEvent4, dummyEvent5, dummyEvent6, dummyEvent7, dummyEvent8, dummyEvent9, dummyEvent10, dummyEvent2, dummyEvent2, dummyEvent2, dummyEvent2, dummyEvent2, dummyEvent2, dummyEvent2, dummyEvent2, dummyEvent2, dummyEvent2, dummyEvent2, dummyEvent2, dummyEvent2, dummyEvent2];
 
-//TODO: implement separate scrolling for the three lists
-
 class EventsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

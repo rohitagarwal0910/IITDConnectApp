@@ -32,7 +32,6 @@ class EventCardState extends State<EventCard> {
     return Card(
       child: Row(
         children: <Widget>[
-          Spacer(),
           Column(
             children: <Widget>[
               Text(_event.eventName),
@@ -53,7 +52,6 @@ class EventCardState extends State<EventCard> {
             },
             child: _icon,
           ),
-          Spacer(),
         ],
       ),
     );
