@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import './clubs_tab.dart';
+import './club_class.dart';
 import './club_card.dart';
 
 class ClubsList extends StatelessWidget {
-  final List<Club> clubs;
+  final List<Club> clubs=dummyClubs;
 
-  ClubsList(this.clubs);
+  // ClubsList(this.clubs);
 
   @override
   Widget build(BuildContext context) {

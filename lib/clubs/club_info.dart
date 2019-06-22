@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './clubs_tab.dart';
+import './club_class.dart';
 
 class ClubInfo extends StatelessWidget {
   final Club club;

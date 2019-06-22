@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './clubs_tab.dart';
+import './club_class.dart';
 import './club_info.dart';
 
 class ClubCard extends StatefulWidget {

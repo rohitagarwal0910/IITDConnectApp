@@ -13,26 +13,62 @@ class MyApp extends StatefulWidget {
   }
 }
 
-class MyAppState extends State<MyApp> {
+class MyAppState extends State<MyApp> with TickerProviderStateMixin {
+  TabController _controller;
   int _selectedTab = 1;
-  final List<Widget> _tabs = [ClubsTab(), EventsTab(), ManageTab()];
+  List<Widget> _tabs;
+  Widget appBar1 = AppBar(
+    title: Text('IITD Connect'),
+  );
+  Widget appBar;
+
+  @override
+  void initState() {
+    _controller = TabController(length: 3, vsync: this);
+    appBar = AppBar(
+      title: Text('IITD Connect'),
+      bottom: TabBar(
+        controller: _controller,
+        tabs: [
+          Tab(text: 'TODAY'),
+          Tab(text: 'TOMORROW'),
+          Tab(text: 'UPCOMING'),
+        ],
+      ),
+    );
+    _tabs = [ClubsTab(), EventsTab(_controller), ManageTab()];
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        brightness: Brightness.dark,
+        brightness: Brightness.light,
       ),
       title: 'IITD Connect',
       home: Scaffold(
-        appBar: AppBar(
-          title: Text('IITD Connect'),
-        ),
+        appBar: appBar,
         body: _tabs[_selectedTab],
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _selectedTab,
           onTap: (int index) {
             setState(() {
               _selectedTab = index;
+              if (index == 1)
+                appBar = AppBar(
+                  title: Text('IITD Connect'),
+                  bottom: TabBar(
+                    controller: _controller,
+                    tabs: [
+                      Tab(text: 'TODAY'),
+                      Tab(text: 'TOMORROW'),
+                      Tab(text: 'UPCOMING'),
+                    ],
+                  ),
+                );
+              else
+                appBar = appBar1;
             });
           },
           items: [

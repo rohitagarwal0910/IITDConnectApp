@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import './my_events_list.dart';
-import '../events/events_tab.dart';
+import '../events/event_class.dart';
 
 class ManageTab extends StatelessWidget {
   @override
@@ -13,7 +13,7 @@ class ManageTab extends StatelessWidget {
           child: Text('Add Event'),
         ),
         Expanded(
-          child: MyEventsList(events),
+          child: MyEventsList(events[0]),
         ),
       ],
     );

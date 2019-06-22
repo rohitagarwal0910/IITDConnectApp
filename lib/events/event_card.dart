@@ -1,31 +1,19 @@
 import 'package:flutter/material.dart';
 
-import './events_tab.dart';
+import './event_class.dart';
 import './event_info.dart';
 
-class EventCard extends StatefulWidget {
+class EventCard extends StatelessWidget {
   final Event _event;
-
-  EventCard(this._event);
-
-  @override
-  State<StatefulWidget> createState() {
-    return EventCardState();
-  }
-}
-
-class EventCardState extends State<EventCard> {
-  Event _event;
+  final Function _onStarPress;
   Icon _icon;
 
-  @override
-  void initState() {
-    _event = widget._event;
-    if (_event.isStarred)
+  EventCard(this._event, this._onStarPress) {
+    if (_event.isStarred) {
       _icon = Icon(Icons.star);
-    else
+    } else {
       _icon = Icon(Icons.star_border);
-    super.initState();
+    }
   }
 
   @override
@@ -47,15 +35,12 @@ class EventCardState extends State<EventCard> {
             ),
             Spacer(),
             GestureDetector(
+              onTap: () {},
+              child: Icon(Icons.calendar_today),
+            ),
+            GestureDetector(
               onTap: () {
-                setState(() {
-                  _event.isStarred =
-                      !_event.isStarred; //To be changed by API Call
-                  if (_event.isStarred)
-                    _icon = Icon(Icons.star);
-                  else
-                    _icon = Icon(Icons.star_border);
-                });
+                _onStarPress(_event);
               },
               child: _icon,
             ),

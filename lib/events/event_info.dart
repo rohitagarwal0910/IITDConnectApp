@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './events_tab.dart';
+import './event_class.dart';
 
 class EventInfo extends StatelessWidget {
   final Event event;
