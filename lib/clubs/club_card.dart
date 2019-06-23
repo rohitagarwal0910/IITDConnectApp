@@ -3,24 +3,16 @@ import 'package:flutter/material.dart';
 import './club_class.dart';
 import './club_info.dart';
 
-class ClubCard extends StatefulWidget {
+class ClubCard extends StatelessWidget {
   final Club club;
+  final Function onAddPress;
+  Icon icon;
 
-  ClubCard(this.club);
-
-  @override
-  State<StatefulWidget> createState() {
-    return ClubCardState();
-  }
-}
-
-class ClubCardState extends State<ClubCard> {
-  Club club;
-
-  @override
-  void initState() {
-    club = widget.club;
-    super.initState();
+  ClubCard(this.club, this.onAddPress) {
+    if (club.isSubbed)
+      icon = Icon(Icons.remove_circle);
+    else
+      icon = Icon(Icons.add_circle_outline);
   }
 
   @override
@@ -31,11 +23,21 @@ class ClubCardState extends State<ClubCard> {
             context, MaterialPageRoute(builder: (context) => ClubInfo(club)));
       },
       child: Card(
-        child: Column(
-          children: <Widget>[
-            Text(club.clubName),
-            Text(club.clubDept),
-          ],
+        child: Container(
+          padding: EdgeInsets.all(10.0),
+          child: Row(
+            children: <Widget>[
+              Column(
+                  children: <Widget>[Text(club.clubName), Text(club.clubDept)]),
+              Spacer(),
+              GestureDetector(
+                onTap: () {
+                  onAddPress(club);
+                },
+                child: icon,
+              ),
+            ],
+          ),
         ),
       ),
     );

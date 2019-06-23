@@ -49,8 +49,9 @@ class EventsPageState extends State<EventsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      key: PageStorageKey(_title),
+    return 
+    ListView(
+      // key: PageStorageKey(_title),
       physics: AlwaysScrollableScrollPhysics(),
       children: <Widget>[
         EventsList(
@@ -78,11 +79,11 @@ class EventsPageState extends State<EventsPage> {
       //   child: Column(
       //     children: <Widget>[
       //       Text('STARRED EVENTS'),
-      //       EventsList(_events[0], _title),
+      //       EventsList(_events[0], 'STARRED', starEvent),
       //       Text('FROM SUBSCRIBED CLUBS'),
-      //       EventsList(_events[1], _title),
+      //       EventsList(_events[1], 'SUBBED', starEvent),
       //       Text('OTHER EVENTS'),
-      //       EventsList(_events[2], _title),
+      //       EventsList(_events[2], 'OTHER', starEvent),
       //     ],
       //   ),
     );

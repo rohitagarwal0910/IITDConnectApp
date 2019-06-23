@@ -13,7 +13,7 @@ class MyEventsList extends StatelessWidget {
     return ListView.builder(
       key: PageStorageKey('myEventsList'),
       itemCount: _events.length,
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(18.0),
       itemBuilder: (BuildContext context, int index) {
         return MyEventCard(_events[index]);
       },

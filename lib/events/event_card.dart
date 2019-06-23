@@ -24,27 +24,33 @@ class EventCard extends StatelessWidget {
             MaterialPageRoute(builder: (context) => EventInfo(_event)));
       },
       child: Card(
-        child: Row(
-          children: <Widget>[
-            Column(
-              children: <Widget>[
-                Text(_event.eventName),
-                Text(_event.eventBody),
-                Text(_event.venue)
-              ],
-            ),
-            Spacer(),
-            GestureDetector(
-              onTap: () {},
-              child: Icon(Icons.calendar_today),
-            ),
-            GestureDetector(
-              onTap: () {
-                _onStarPress(_event);
-              },
-              child: _icon,
-            ),
-          ],
+        child: Container(
+          padding: EdgeInsets.all(15.0),
+          child: Row(
+            children: <Widget>[
+              Column(
+                children: <Widget>[
+                  Text(_event.eventName),
+                  Text(_event.eventBody),
+                  Text(_event.venue)
+                ],
+              ),
+              Spacer(),
+              GestureDetector(
+                onTap: () {},
+                child: Icon(Icons.calendar_today),
+              ),
+              GestureDetector(
+                onTap: () {
+                  _onStarPress(_event);
+                },
+                child: Container(
+                  padding: EdgeInsets.all(5.0),
+                  child: _icon,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
