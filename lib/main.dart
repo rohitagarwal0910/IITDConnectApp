@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import './events/events_tab.dart';
 import './clubs/clubs_tab.dart';
 import './manage/manage_tab.dart';
-import './profile_page.dart';
 import './profile_icon.dart';
 
 void main() => runApp(MyApp());
