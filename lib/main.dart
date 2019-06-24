@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import './events/events_tab.dart';
 import './clubs/clubs_tab.dart';
 import './manage/manage_tab.dart';
+import './profile_page.dart';
+import './profile_icon.dart';
 
 void main() => runApp(MyApp());
 
@@ -17,9 +19,7 @@ class MyAppState extends State<MyApp> with TickerProviderStateMixin {
   TabController _controller;
   int _selectedTab = 1;
   List<Widget> _tabs;
-  Widget appBar1 = AppBar(
-    title: Text('IITD Connect'),
-  );
+
   Widget appBar;
 
   @override
@@ -27,6 +27,7 @@ class MyAppState extends State<MyApp> with TickerProviderStateMixin {
     _controller = TabController(length: 3, vsync: this);
     appBar = AppBar(
       title: Text('IITD Connect'),
+      actions: <Widget>[ProfileIcon()],
       bottom: TabBar(
         controller: _controller,
         tabs: [
@@ -58,6 +59,7 @@ class MyAppState extends State<MyApp> with TickerProviderStateMixin {
               if (index == 1)
                 appBar = AppBar(
                   title: Text('IITD Connect'),
+                  actions: <Widget>[ProfileIcon()],
                   bottom: TabBar(
                     controller: _controller,
                     tabs: [
@@ -68,7 +70,10 @@ class MyAppState extends State<MyApp> with TickerProviderStateMixin {
                   ),
                 );
               else
-                appBar = appBar1;
+                appBar = AppBar(
+                  title: Text('IITD Connect'),
+                  actions: <Widget>[ProfileIcon()],
+                );
             });
           },
           items: [
