@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:gradient_app_bar/gradient_app_bar.dart';
 
 import './events/events_tab.dart';
 import './clubs/clubs_tab.dart';
@@ -24,10 +26,14 @@ class MyAppState extends State<MyApp> with TickerProviderStateMixin {
   @override
   void initState() {
     _controller = TabController(length: 3, vsync: this);
-    appBar = AppBar(
+    appBar = GradientAppBar(
+      elevation: 10,
       title: Text('IITD Connect'),
+      backgroundColorStart: Colors.indigo,
+      backgroundColorEnd: Colors.cyan,
       actions: <Widget>[ProfileIcon()],
       bottom: TabBar(
+        indicatorColor: Colors.white70,
         controller: _controller,
         tabs: [
           Tab(text: 'TODAY'),
@@ -44,22 +50,30 @@ class MyAppState extends State<MyApp> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        brightness: Brightness.light,
+        // scaffoldBackgroundColor: Colors.indigo
       ),
       title: 'IITD Connect',
       home: Scaffold(
         appBar: appBar,
         body: _tabs[_selectedTab],
-        bottomNavigationBar: BottomNavigationBar(
+        bottomNavigationBar: Container(
+          decoration: BoxDecoration(
+            boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 20)]
+          ),
+          child:  BottomNavigationBar(
           currentIndex: _selectedTab,
           onTap: (int index) {
             setState(() {
               _selectedTab = index;
               if (index == 1)
-                appBar = AppBar(
+                appBar = GradientAppBar(
                   title: Text('IITD Connect'),
+                  backgroundColorStart: Colors.indigo,
+                  backgroundColorEnd: Colors.cyan,
+                  elevation: 10,
                   actions: <Widget>[ProfileIcon()],
                   bottom: TabBar(
+                    indicatorColor: Colors.white70,
                     controller: _controller,
                     tabs: [
                       Tab(text: 'TODAY'),
@@ -69,8 +83,11 @@ class MyAppState extends State<MyApp> with TickerProviderStateMixin {
                   ),
                 );
               else
-                appBar = AppBar(
+                appBar = GradientAppBar(
                   title: Text('IITD Connect'),
+                  elevation: 10,
+                  backgroundColorStart: Colors.indigo,
+                  backgroundColorEnd: Colors.cyan,
                   actions: <Widget>[ProfileIcon()],
                 );
             });
@@ -89,7 +106,7 @@ class MyAppState extends State<MyApp> with TickerProviderStateMixin {
                 icon: Icon(Icons.edit),
                 title: Text('Manage'))
           ],
-        ),
+        ),),
       ),
     );
   }

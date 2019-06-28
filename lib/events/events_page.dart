@@ -51,9 +51,12 @@ class EventsPageState extends State<EventsPage> {
   Widget build(BuildContext context) {
     return 
     ListView(
-      // key: PageStorageKey(_title),
+      key: PageStorageKey(_title),
       physics: AlwaysScrollableScrollPhysics(),
       children: <Widget>[
+        Container(
+          height: 5,
+        ),
         EventsList(
           _events[0],
           'STARRED EVENTS',
@@ -62,13 +65,13 @@ class EventsPageState extends State<EventsPage> {
         ),
         EventsList(
           _events[1],
-          'SUBBED',
+          'FROM SUBSCRIBTIONS',
           // _title,
           starEvent,
         ),
         EventsList(
           _events[2],
-          'OTHER',
+          'OTHER EVENTS',
           // _title,
           starEvent,
         ),

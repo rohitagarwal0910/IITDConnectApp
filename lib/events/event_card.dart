@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 import './event_class.dart';
 import './event_info.dart';
@@ -10,9 +12,12 @@ class EventCard extends StatelessWidget {
 
   EventCard(this._event, this._onStarPress) {
     if (_event.isStarred) {
-      _icon = Icon(Icons.star);
+      _icon = Icon(Icons.star, color: Colors.amberAccent);
     } else {
-      _icon = Icon(Icons.star_border);
+      _icon = Icon(
+        Icons.star_border,
+        color: Colors.white,
+      );
     }
   }
 
@@ -23,34 +28,114 @@ class EventCard extends StatelessWidget {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => EventInfo(_event)));
       },
-      child: Card(
-        child: Container(
-          padding: EdgeInsets.all(15.0),
-          child: Row(
-            children: <Widget>[
-              Column(
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.indigo,
+          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+        ),
+        margin: EdgeInsets.symmetric(vertical: 7),
+        padding: EdgeInsets.only(bottom: 15),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.only(top: 20, bottom: 10, left: 25, right: 25),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-                  Text(_event.eventName),
-                  Text(_event.eventBody),
-                  Text(_event.venue)
+                  AutoSizeText(
+                    _event.eventName,
+                    style: TextStyle(fontSize: 23, color: Colors.white),
+                    maxLines: 1,
+                  ),
+                  Text(_event.eventBody,
+                      style: TextStyle(color: Colors.white, fontSize: 15)),
                 ],
               ),
-              Spacer(),
-              GestureDetector(
-                onTap: () {},
-                child: Icon(Icons.calendar_today),
-              ),
-              GestureDetector(
-                onTap: () {
-                  _onStarPress(_event);
-                },
-                child: Container(
-                  padding: EdgeInsets.all(5.0),
-                  child: _icon,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.only(left: 12),
+                  width: MediaQuery.of(context).size.width * .25,
+                  child: Column(
+                    children: <Widget>[
+                      Text('AT',
+                          style:
+                              TextStyle(color: Colors.white70, fontSize: 10)),
+                      Text(_event.venue,
+                        style: TextStyle(color: Colors.white, fontSize: 14,),
+                        textAlign: TextAlign.center,
+                      )
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          ),
+                Container(
+                  // margin: EdgeInsets.only(top: 20),
+                  child: Row(
+                    children: <Widget>[
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: <Widget>[
+                          Text('STARTS',
+                              style: TextStyle(
+                                  color: Colors.white70, fontSize: 10)),
+                          Text('17 Jan',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 14)),
+                          Text('8:00 PM',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 14)),
+                        ],
+                      ),
+                      Container(
+                          width: 0.5,
+                          height: 50,
+                          margin: EdgeInsets.symmetric(horizontal: 5),
+                          color: Colors.white),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text('ENDS',
+                              style: TextStyle(
+                                  color: Colors.white70, fontSize: 10)),
+                          Text('18 Jan',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 14)),
+                          Text('8:00 PM',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 14)),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {},
+                  behavior: HitTestBehavior.opaque,
+                  child: Container(
+                    padding: EdgeInsets.all(10),
+                    child: Icon(
+                      Icons.calendar_today,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    _onStarPress(_event);
+                  },
+                  behavior: HitTestBehavior.opaque,
+                  child: Container(
+                    padding: EdgeInsets.only(right: 25, top: 10, bottom: 10),
+                    child: _icon,
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

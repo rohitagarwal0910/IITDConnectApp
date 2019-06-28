@@ -22,9 +22,9 @@ var dummyEvent1 = Event(
     isBodySub: false);
 
 var dummyEvent2 = Event(
-    eventName: 'Event2',
-    eventBody: 'Club1',
-    venue: 'LHC',
+    eventName: 'Campus Hackathon',
+    eventBody: 'DevClub',
+    venue: 'LH 316',
     about: 'jhkbj',
     isStarred: true,
     isBodySub: false);
@@ -94,25 +94,25 @@ var dummyEvent10 = Event(
     isBodySub: false);
 
 var dummyEvent11 = Event(
-    eventName: 'Event11',
-    eventBody: 'Club1',
-    venue: 'LHC',
+    eventName: 'Dance Competition',
+    eventBody: 'Dance Club',
+    venue: 'Seminar Hall',
     about: 'jhkbj',
     isStarred: false,
     isBodySub: true);
 
 var dummyEvent12 = Event(
-    eventName: 'Event12',
-    eventBody: 'Club1',
+    eventName: 'Paint Job',
+    eventBody: 'Fine Arts Club',
     venue: 'LHC',
     about: 'jhkbj',
     isStarred: false,
     isBodySub: true);
 
 var dummyEvent13 = Event(
-    eventName: 'Event13',
-    eventBody: 'Club1',
-    venue: 'LHC',
+    eventName: 'Street Play',
+    eventBody: 'Dramatics Society',
+    venue: 'SAC Lawns',
     about: 'jhkbj',
     isStarred: false,
     isBodySub: true);

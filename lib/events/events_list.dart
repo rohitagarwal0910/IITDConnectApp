@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import './event_card.dart';
@@ -19,15 +20,27 @@ class EventsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(20.0),
-      margin: EdgeInsets.all(15.0),
+      padding: EdgeInsets.all(18.0),
+      margin: EdgeInsets.all(10.0),
       decoration: BoxDecoration(
-        border: Border.all(),
-        // borderRadius: BorderRadius.all(Radius.circular(30.0)),
+        color: Color(0x99D0D0D0),
+        borderRadius: BorderRadius.all(Radius.circular(30.0)),
       ),
       child: Column(
         children: <Widget>[
-          Text(listTitle),
+          Container(
+            margin: EdgeInsets.only(top: 2, bottom: 10),
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 2),
+            // decoration: BoxDecoration(
+            //   color: Color(0xFFCCCCCC),
+            //   borderRadius: BorderRadius.all(Radius.circular(20)),
+            //   boxShadow: [BoxShadow(blurRadius: 1, color: Colors.grey)]
+            // ),
+            child: Text(
+              listTitle,
+              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400, color: Colors.black54),
+            ),
+          ),
           Column(
             children: _events
                 .map((element) => EventCard(element, _onStarPress))
