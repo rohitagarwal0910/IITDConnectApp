@@ -6,7 +6,7 @@ A new Flutter project.
 
 - Clone the repo using `git clone [url]`
 - Install flutter on your system from [here](https://flutter.dev/docs/get-started/install) and follow all the instructions to set up flutter. Run `flutter doctor` to verify if set up is complete.
-- Go to app directory Run `flutter apt get` to download the additional packages the app requires.
+- Go to app directory Run `flutter pub get` to download the additional packages the app requires.
 - Start an emulator or connect you device.
 - Use `flutter run` to run app in hot reload mode or go to `Debug > Start Without Debugging` in VS Code.
 - Use `flutter run --release` to run app in release mode.
