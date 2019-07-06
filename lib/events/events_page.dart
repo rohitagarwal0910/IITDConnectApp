@@ -52,7 +52,6 @@ class EventsPageState extends State<EventsPage> {
     return 
     ListView(
       key: PageStorageKey(_title),
-      physics: AlwaysScrollableScrollPhysics(),
       children: <Widget>[
         Container(
           height: 5,
@@ -74,6 +73,9 @@ class EventsPageState extends State<EventsPage> {
           'OTHER EVENTS',
           // _title,
           starEvent,
+        ),
+        Container(
+          height: 5,
         ),
       ],
       // SingleChildScrollView(

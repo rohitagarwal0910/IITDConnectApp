@@ -8,7 +8,7 @@ class Club {
 }
 
 var dummyClub1 =
-    Club(clubName: 'Club1', clubDept: 'Dept1', clubAbout: 'wqewdqwe', isSubbed: false);
+    Club(clubName: 'Algorithms and Coding Club', clubDept: 'Dept1', clubAbout: 'wqewdqwe', isSubbed: false);
 var dummyClub2 =
     Club(clubName: 'Club2', clubDept: 'Dept2', clubAbout: 'wqewdqwe', isSubbed: false);
 var dummyClub3 =

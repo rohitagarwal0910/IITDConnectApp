@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
-import './event_class.dart';
-import './event_info/event_info_screen.dart';
+import '../../events/event_class.dart';
+import '../../events/event_info/event_info_screen.dart';
 
-class EventCard extends StatelessWidget {
+class ClubEventCard extends StatelessWidget {
   final Event _event;
-  final Function _onStarPress;
   Icon _icon;
 
-  EventCard(this._event, this._onStarPress) {
+  ClubEventCard(this._event) {
     if (_event.isStarred) {
       _icon = Icon(Icons.star, color: Colors.amberAccent);
     } else {
@@ -39,21 +38,11 @@ class EventCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
-              margin: EdgeInsets.only(bottom: 10, right: 10, left: 10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  AutoSizeText(
-                    _event.eventName,
-                    style: TextStyle(fontSize: 23, color: Colors.white),
-                    maxLines: 1,
-                  ),
-                  AutoSizeText(
-                    _event.eventBody,
-                    style: TextStyle(color: Colors.white, fontSize: 15),
-                    maxLines: 1,
-                  ),
-                ],
+              margin: EdgeInsets.only(bottom: 10),
+              child: AutoSizeText(
+                _event.eventName,
+                style: TextStyle(fontSize: 23, color: Colors.white),
+                maxLines: 1,
               ),
             ),
             Row(
@@ -127,19 +116,91 @@ class EventCard extends StatelessWidget {
                   icon: Icon(Icons.calendar_today),
                   color: Colors.white,
                 ),
-                IconButton(
-                  onPressed: () {
-                    _onStarPress(_event);
-                  },
-                  icon: _icon,
-                  splashColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
-                ),
+                StarButton(_event),
               ],
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+//----------------------------------------------------------------------
+
+class StarButton extends StatefulWidget {
+  final Event _event;
+
+  StarButton(this._event);
+
+  @override
+  State<StatefulWidget> createState() {
+    return StarButtonState();
+  }
+}
+
+class StarButtonState extends State<StarButton> {
+  Icon _icon;
+  Event event;
+
+  @override
+  void initState() {
+    event = widget._event;
+    if (event.isStarred) {
+      _icon = Icon(
+        Icons.star,
+        color: Colors.amberAccent,
+      );
+    } else {
+      _icon = Icon(
+        Icons.star_border,
+        color: Colors.white,
+      );
+    }
+    super.initState();
+  }
+
+  void onStarPress() {
+    event.isStarred = !event.isStarred;
+    if (event.isStarred) {
+      events[0].add(event);
+      if (event.isBodySub) {
+        events[1].remove(event);
+      } else {
+        events[2].remove(event);
+      }
+    } else {
+      events[0].remove(event);
+      if (event.isBodySub) {
+        events[1].add(event);
+      } else {
+        events[2].add(event);
+      }
+    }
+    if (event.isStarred) {
+      _icon = Icon(
+        Icons.star,
+        color: Colors.amberAccent,
+      );
+    } else {
+      _icon = Icon(
+        Icons.star_border,
+        color: Colors.white,
+      );
+    }
+    setState(() {});
+    //API call to make this change
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: () {
+        onStarPress();
+      },
+      icon: _icon,
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
     );
   }
 }

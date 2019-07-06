@@ -41,6 +41,9 @@ class ClubsTabState extends State<ClubsTab> {
       key: PageStorageKey('clubsTab'),
       physics: AlwaysScrollableScrollPhysics(),
       children: <Widget>[
+        Container(
+          height: 5,
+        ),
         ClubsList(
           _clubs[0],
           'SUBSCRIBED CLUBS',
@@ -50,6 +53,9 @@ class ClubsTabState extends State<ClubsTab> {
           _clubs[1],
           'OTHER CLUBS',
           subClub,
+        ),
+        Container(
+          height: 5,
         ),
       ],
     );

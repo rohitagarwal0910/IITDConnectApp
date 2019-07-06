@@ -50,7 +50,7 @@ class MyAppState extends State<MyApp> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        // scaffoldBackgroundColor: Colors.indigo
+        scaffoldBackgroundColor: Colors.indigo[900]
       ),
       title: 'IITD Connect',
       home: Scaffold(
