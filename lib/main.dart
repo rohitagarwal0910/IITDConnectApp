@@ -6,6 +6,7 @@ import './events/events_tab.dart';
 import './clubs/clubs_tab.dart';
 import './manage/manage_tab.dart';
 import './profile_icon.dart';
+import './user_class.dart';
 
 void main() => runApp(MyApp());
 
@@ -20,6 +21,7 @@ class MyAppState extends State<MyApp> with TickerProviderStateMixin {
   TabController _controller;
   int _selectedTab = 1;
   List<Widget> _tabs;
+  List<BottomNavigationBarItem> _navBarItems;
 
   Widget appBar;
 
@@ -42,7 +44,24 @@ class MyAppState extends State<MyApp> with TickerProviderStateMixin {
         ],
       ),
     );
-    _tabs = [ClubsTab(), EventsTab(_controller), ManageTab()];
+    _tabs = [ClubsTab(), EventsTab(_controller)];
+    _navBarItems = [
+      BottomNavigationBarItem(
+        icon: Icon(Icons.list),
+        title: Text('Clubs'),
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.event),
+        title: Text('Events'),
+      ),
+    ];
+    if (user1.isAdmin) {
+      _tabs.add(ManageTab());
+      _navBarItems.add(BottomNavigationBarItem(
+        icon: Icon(Icons.edit),
+        title: Text('Manage'),
+      ));
+    }
     super.initState();
   }
 
@@ -91,20 +110,7 @@ class MyAppState extends State<MyApp> with TickerProviderStateMixin {
                   );
               });
             },
-            items: [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.list),
-                title: Text('Clubs'),
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.event),
-                title: Text('Events'),
-              ),
-              BottomNavigationBarItem(
-                  //If admin account
-                  icon: Icon(Icons.edit),
-                  title: Text('Manage'))
-            ],
+            items: _navBarItems,
           ),
         ),
       ),

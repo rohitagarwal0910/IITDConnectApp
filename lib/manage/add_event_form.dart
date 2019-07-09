@@ -7,7 +7,6 @@ import '../events/event_class.dart';
 import '../user_class.dart';
 
 class EventForm extends StatefulWidget {
-
   @override
   State<StatefulWidget> createState() {
     return _EventFormState();
@@ -128,29 +127,69 @@ class _EventFormState extends State<EventForm> {
                   return null;
               },
             ),
-            RaisedButton(
-              color: Colors.indigo[400],
-              child: Text(
-                'SUBMIT',
-                style: TextStyle(color: Colors.white),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+              RaisedButton(
+                onPressed: () {
+                  showAlert(context);
+                },
+                child: Text('CANCEL'),
+                color: Colors.indigo[100],
               ),
-              onPressed: () {
-                if (_key.currentState.validate()) {
-                  _key.currentState.save();
-                  events[2].add(Event(
-                      eventName: _eventName,
-                      eventBody: user1.adminof.clubName,
-                      venue: _venue,
-                      about: _about,
-                      isBodySub: false,
-                      isStarred: false));
-                  Navigator.pop(context);
-                }
-              },
-            )
+              RaisedButton(
+                color: Colors.indigo[400],
+                child: Text(
+                  'SUBMIT',
+                  style: TextStyle(color: Colors.white),
+                ),
+                onPressed: () {
+                  if (_key.currentState.validate()) {
+                    _key.currentState.save();
+                    events[2].add(Event(
+                        eventName: _eventName,
+                        eventBody: user1.adminof.clubName,
+                        venue: _venue,
+                        about: _about,
+                        isBodySub: false,
+                        isStarred: false));
+                    Navigator.pop(context);
+                  }
+                },
+              ),
+            ]),
           ],
         ),
       ),
     );
   }
 }
+
+void showAlert(BuildContext context) {
+showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        backgroundColor: Colors.indigo[600],
+        title: Text('Cancel making new event', style: TextStyle(color: Colors.white),),
+        content: Text('Are you sure you want to discard this event?', style: TextStyle(color: Colors.white),),
+        actions: <Widget>[
+          FlatButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Text('NO', style: TextStyle(color: Colors.white70),),
+          ),
+          FlatButton(
+            onPressed: () {
+              Navigator.pop(context);
+              Navigator.pop(context);
+            },
+            child: Text('YES', style: TextStyle(color: Colors.white70),),
+          )
+        ],
+      );
+    },
+  );
+}
+

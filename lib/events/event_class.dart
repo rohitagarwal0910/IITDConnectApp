@@ -5,12 +5,12 @@ class Event {
   DateTime startsAt = DateTime.now();
   DateTime endsAt = DateTime.now();
   String about;
-  String imageLink = 'https://picsum.photos/250?image=10';
+  String imageLink;
   bool isStarred;
   bool isBodySub;
 
   Event(
-      {this.eventName, this.eventBody, this.venue, this.about, this.isStarred, this.isBodySub,});
+      {this.eventName, this.eventBody, this.venue, this.about, this.isStarred = false, this.isBodySub = false, this.imageLink = 'https://picsum.photos/250?image=10',});
 }
 
 var dummyEvent1 = Event(
