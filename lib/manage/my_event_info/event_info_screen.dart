@@ -4,7 +4,7 @@ import 'package:gradient_app_bar/gradient_app_bar.dart';
 import '../../profile_icon.dart';
 import '../../events/event_class.dart';
 import './event_info_card.dart';
-import './event_about.dart';
+import '../../events/event_info/event_about.dart';
 import '../../events/event_info/updates_class.dart';
 import './event_updates_list.dart';
 
@@ -25,7 +25,7 @@ class EventInfo extends StatelessWidget {
       ),
       body: GestureDetector(
         onTap: () {
-          FocusScope.of(context).requestFocus(new FocusNode());
+          FocusScope.of(context).requestFocus(FocusNode());
         },
         child: ListView(
           children: <Widget>[

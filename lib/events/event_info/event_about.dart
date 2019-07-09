@@ -29,13 +29,22 @@ class EventAbout extends StatelessWidget {
               margin: EdgeInsets.symmetric(vertical: 10),
               color: Colors.blue,
             ),
-            Text(
-              _event.about,
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w300,
-                fontSize: 15,
-                letterSpacing: 0.5,
+            Container(
+              margin: EdgeInsets.only(bottom: 20),
+              child: Text(
+                _event.about,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w300,
+                  fontSize: 15,
+                  letterSpacing: 0.5,
+                ),
+              ),
+            ),
+            Center(
+              child: Image.network(
+                _event.imageLink,
+                fit: BoxFit.scaleDown,
               ),
             )
           ],

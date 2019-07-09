@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
 import '../../events/event_class.dart';
+import '../../events/event_card_contents/event_time.dart';
+import '../../events/event_card_contents/event_venue.dart';
+import '../edit_event.dart';
 
 class EventInfoCard extends StatelessWidget {
   final Event _event;
@@ -42,64 +45,12 @@ class EventInfoCard extends StatelessWidget {
               children: <Widget>[
                 Container(
                   width: 150,
-                  padding:
-                      EdgeInsets.only(left: 20, bottom: 10, top: 10, right: 10),
-                  child: Column(
-                    children: <Widget>[
-                      Text('AT',
-                          style: TextStyle(color: Colors.white70, fontSize: 9)),
-                      Text(
-                        _event.venue,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 13,
-                        ),
-                        textAlign: TextAlign.center,
-                      )
-                    ],
-                  ),
+                  child: EventVenue(_event.venue),
                 ),
                 Container(
                   padding:
                       EdgeInsets.only(bottom: 10, top: 10, left: 10, right: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: <Widget>[
-                          Text('STARTS',
-                              style: TextStyle(
-                                  color: Colors.white70, fontSize: 9)),
-                          Text('17 Jan',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 13)),
-                          Text('8:00 PM',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 13)),
-                        ],
-                      ),
-                      Container(
-                          width: 0.5,
-                          height: 45,
-                          margin: EdgeInsets.symmetric(horizontal: 5),
-                          color: Colors.white),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text('ENDS',
-                              style: TextStyle(
-                                  color: Colors.white70, fontSize: 9)),
-                          Text('18 Jan',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 13)),
-                          Text('8:00 PM',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 13)),
-                        ],
-                      ),
-                    ],
-                  ),
+                  child: EventTime(_event.startsAt, _event.endsAt),
                 ),
               ],
             ),
@@ -114,12 +65,21 @@ class EventInfoCard extends StatelessWidget {
                     color: Colors.white,
                     tooltip: 'Add to Calendar',
                   ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.edit),
-                    color: Colors.white,
-                    tooltip: 'Edit Event Info',
-                  )
+                  FlatButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => EditEvent(_event)));
+                    },
+                    color: Colors.indigo[400],
+                    child: Text(
+                      'EDIT EVENT',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -129,4 +89,3 @@ class EventInfoCard extends StatelessWidget {
     );
   }
 }
-

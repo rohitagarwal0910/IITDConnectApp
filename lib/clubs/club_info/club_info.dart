@@ -5,7 +5,7 @@ import '../club_class.dart';
 import './club_about.dart';
 import './club_events.dart';
 import './club_info_card.dart';
-
+import '../../profile_icon.dart';
 import '../../events/event_class.dart';
 
 class ClubInfo extends StatelessWidget {
@@ -21,6 +21,7 @@ class ClubInfo extends StatelessWidget {
         centerTitle: true,
         backgroundColorStart: Colors.indigo,
         backgroundColorEnd: Colors.cyan,
+        actions: <Widget>[ProfileIcon()],
       ),
       body: ListView(
         children: <Widget>[

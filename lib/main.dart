@@ -50,63 +50,63 @@ class MyAppState extends State<MyApp> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.indigo[900]
-      ),
+          hintColor: Colors.white54,
+          scaffoldBackgroundColor: Colors.indigo[900]),
       title: 'IITD Connect',
       home: Scaffold(
         appBar: appBar,
         body: _tabs[_selectedTab],
         bottomNavigationBar: Container(
           decoration: BoxDecoration(
-            boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 20)]
+              boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 20)]),
+          child: BottomNavigationBar(
+            currentIndex: _selectedTab,
+            onTap: (int index) {
+              setState(() {
+                _selectedTab = index;
+                if (index == 1)
+                  appBar = GradientAppBar(
+                    title: Text('IITD Connect'),
+                    backgroundColorStart: Colors.indigo,
+                    backgroundColorEnd: Colors.cyan,
+                    elevation: 10,
+                    actions: <Widget>[ProfileIcon()],
+                    bottom: TabBar(
+                      indicatorColor: Colors.white70,
+                      controller: _controller,
+                      tabs: [
+                        Tab(text: 'TODAY'),
+                        Tab(text: 'TOMORROW'),
+                        Tab(text: 'UPCOMING'),
+                      ],
+                    ),
+                  );
+                else
+                  appBar = GradientAppBar(
+                    title: Text('IITD Connect'),
+                    elevation: 10,
+                    backgroundColorStart: Colors.indigo,
+                    backgroundColorEnd: Colors.cyan,
+                    actions: <Widget>[ProfileIcon()],
+                  );
+              });
+            },
+            items: [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.list),
+                title: Text('Clubs'),
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.event),
+                title: Text('Events'),
+              ),
+              BottomNavigationBarItem(
+                  //If admin account
+                  icon: Icon(Icons.edit),
+                  title: Text('Manage'))
+            ],
           ),
-          child:  BottomNavigationBar(
-          currentIndex: _selectedTab,
-          onTap: (int index) {
-            setState(() {
-              _selectedTab = index;
-              if (index == 1)
-                appBar = GradientAppBar(
-                  title: Text('IITD Connect'),
-                  backgroundColorStart: Colors.indigo,
-                  backgroundColorEnd: Colors.cyan,
-                  elevation: 10,
-                  actions: <Widget>[ProfileIcon()],
-                  bottom: TabBar(
-                    indicatorColor: Colors.white70,
-                    controller: _controller,
-                    tabs: [
-                      Tab(text: 'TODAY'),
-                      Tab(text: 'TOMORROW'),
-                      Tab(text: 'UPCOMING'),
-                    ],
-                  ),
-                );
-              else
-                appBar = GradientAppBar(
-                  title: Text('IITD Connect'),
-                  elevation: 10,
-                  backgroundColorStart: Colors.indigo,
-                  backgroundColorEnd: Colors.cyan,
-                  actions: <Widget>[ProfileIcon()],
-                );
-            });
-          },
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.list),
-              title: Text('Clubs'),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.event),
-              title: Text('Events'),
-            ),
-            BottomNavigationBarItem(
-                //If admin account
-                icon: Icon(Icons.edit),
-                title: Text('Manage'))
-          ],
-        ),),
+        ),
       ),
     );
   }

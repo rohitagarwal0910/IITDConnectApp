@@ -5,23 +5,22 @@ import './club_class.dart';
 import './club_info/club_info.dart';
 
 class ClubCard extends StatelessWidget {
-  final Club club;
-  final Function onAddPress;
-  Icon icon;
+  final Club _club;
+  final Function _onAddPress;
 
-  ClubCard(this.club, this.onAddPress) {
-    if (club.isSubbed)
-      icon = Icon(Icons.remove_circle);
-    else
-      icon = Icon(Icons.add_circle_outline);
-  }
+  ClubCard(this._club, this._onAddPress);
 
   @override
   Widget build(BuildContext context) {
+    Icon _icon;
+    if (_club.isSubbed)
+      _icon = Icon(Icons.remove_circle);
+    else
+      _icon = Icon(Icons.add_circle_outline);
     return GestureDetector(
       onTap: () {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => ClubInfo(club)));
+            context, MaterialPageRoute(builder: (context) => ClubInfo(_club)));
       },
       child: Container(
         decoration: BoxDecoration(
@@ -34,16 +33,16 @@ class ClubCard extends StatelessWidget {
           children: <Widget>[
             Expanded(
               child: Container(
-                child: AutoSizeText(club.clubName,
+                child: AutoSizeText(_club.clubName,
                     style: TextStyle(fontSize: 20, color: Colors.white),
                     maxLines: 1,),
               ),
             ),
             IconButton(
               onPressed: () {
-                onAddPress(club);
+                _onAddPress(_club);
               },
-              icon: icon,
+              icon: _icon,
               color: Colors.white,
               tooltip: 'Subscribe to Club',
               padding: EdgeInsets.all(0),

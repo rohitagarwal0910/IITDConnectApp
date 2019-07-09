@@ -1,13 +1,30 @@
 import 'package:flutter/material.dart';
 
-class AddUpdate extends StatelessWidget {
+class AddUpdate extends StatefulWidget {
   final Function _onSubmit;
 
   AddUpdate(this._onSubmit);
 
   @override
+  State<StatefulWidget> createState() {
+    return _AddUpdateState();
+  }
+}
+
+class _AddUpdateState extends State<AddUpdate> {
+  Function _onSubmit;
+
+  @override
+  void initState() {
+    _onSubmit = widget._onSubmit;
+    super.initState();
+  }
+
+  TextEditingController _controller = TextEditingController();
+  String _message;
+  
+  @override
   Widget build(BuildContext context) {
-    String _message;
     return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
@@ -31,20 +48,29 @@ class AddUpdate extends StatelessWidget {
               keyboardType: TextInputType.multiline,
               maxLines: null,
               style: TextStyle(color: Colors.white),
+              controller: _controller,
               onChanged: (text) {
                 _message = text;
+              },
+              onSubmitted: (text) {
+                _controller.clear();
+                _onSubmit(text);
+                FocusScope.of(context).requestFocus(FocusNode());
               },
             ),
           ),
           FlatButton(
             onPressed: () {
               _onSubmit(_message);
+              _controller.clear();
+              _message = '';
+              FocusScope.of(context).requestFocus(FocusNode());
             },
             child: Text(
               'SUBMIT',
               style: TextStyle(color: Colors.white),
             ),
-            color: Colors.indigo[300],
+            color: Colors.indigo[400],
           )
         ],
       ),
