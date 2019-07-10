@@ -6,6 +6,7 @@ import '../../events/event_class.dart';
 import '../../events/event_info/event_info_screen.dart';
 import '../../events/event_card_contents/event_time.dart';
 import '../../events/event_card_contents/event_venue.dart';
+import '../../events/event_info/star_button.dart';
 
 class ClubEventCard extends StatelessWidget {
   final Event _event;
@@ -51,6 +52,7 @@ class ClubEventCard extends StatelessWidget {
                   onPressed: () {},
                   icon: Icon(Icons.calendar_today),
                   color: Colors.white,
+                  tooltip: 'Add to Calendar',
                 ),
                 StarButton(_event),
               ],
@@ -58,85 +60,6 @@ class ClubEventCard extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-//----------------------------------------------------------------------
-
-class StarButton extends StatefulWidget {
-  final Event _event;
-
-  StarButton(this._event);
-
-  @override
-  State<StatefulWidget> createState() {
-    return _StarButtonState();
-  }
-}
-
-class _StarButtonState extends State<StarButton> {
-  Icon _icon;
-  Event _event;
-
-  @override
-  void initState() {
-    _event = widget._event;
-    if (_event.isStarred) {
-      _icon = Icon(
-        Icons.star,
-        color: Colors.amberAccent,
-      );
-    } else {
-      _icon = Icon(
-        Icons.star_border,
-        color: Colors.white,
-      );
-    }
-    super.initState();
-  }
-
-  void _onStarPress() {
-    _event.isStarred = !_event.isStarred;
-    if (_event.isStarred) {
-      events[0].add(_event);
-      if (_event.isBodySub) {
-        events[1].remove(_event);
-      } else {
-        events[2].remove(_event);
-      }
-    } else {
-      events[0].remove(_event);
-      if (_event.isBodySub) {
-        events[1].add(_event);
-      } else {
-        events[2].add(_event);
-      }
-    }
-    if (_event.isStarred) {
-      _icon = Icon(
-        Icons.star,
-        color: Colors.amberAccent,
-      );
-    } else {
-      _icon = Icon(
-        Icons.star_border,
-        color: Colors.white,
-      );
-    }
-    setState(() {});
-    //API call to make this change
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () {
-        _onStarPress();
-      },
-      icon: _icon,
-      splashColor: Colors.transparent,
-      highlightColor: Colors.transparent,
     );
   }
 }

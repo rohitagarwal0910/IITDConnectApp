@@ -5,6 +5,7 @@ import '../event_class.dart';
 import '../event_card_contents/event_time.dart';
 import '../event_card_contents/event_venue.dart';
 import '../../clubs/club_info/club_info.dart';
+import './star_button.dart';
 
 import '../../clubs/club_class.dart';
 
@@ -60,6 +61,7 @@ class EventInfoCard extends StatelessWidget {
                   IconButton(
                     onPressed: () {},
                     icon: Icon(Icons.calendar_today),
+                    tooltip: 'Add to Calendar',
                     color: Colors.white,
                     iconSize: 20,
                   ),
@@ -67,7 +69,9 @@ class EventInfoCard extends StatelessWidget {
                   FlatButton(
                     onPressed: () {
                       Navigator.push(
-            context, MaterialPageRoute(builder: (context) => ClubInfo(dummyClub1)));
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ClubInfo(dummyClub1)));
                     },
                     child: Text('SEE CLUB'),
                     color: Colors.indigo[400],
@@ -79,85 +83,6 @@ class EventInfoCard extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-//----------------------------------------------------------------------
-
-class StarButton extends StatefulWidget {
-  final Event _event;
-
-  StarButton(this._event);
-
-  @override
-  State<StatefulWidget> createState() {
-    return StarButtonState();
-  }
-}
-
-class StarButtonState extends State<StarButton> {
-  Icon _icon;
-  Event event;
-
-  @override
-  void initState() {
-    event = widget._event;
-    if (event.isStarred) {
-      _icon = Icon(
-        Icons.star,
-        color: Colors.amberAccent,
-      );
-    } else {
-      _icon = Icon(
-        Icons.star_border,
-        color: Colors.white,
-      );
-    }
-    super.initState();
-  }
-
-  void onStarPress() {
-    event.isStarred = !event.isStarred;
-    if (event.isStarred) {
-      events[0].add(event);
-      if (event.isBodySub) {
-        events[1].remove(event);
-      } else {
-        events[2].remove(event);
-      }
-    } else {
-      events[0].remove(event);
-      if (event.isBodySub) {
-        events[1].add(event);
-      } else {
-        events[2].add(event);
-      }
-    }
-    if (event.isStarred) {
-      _icon = Icon(
-        Icons.star,
-        color: Colors.amberAccent,
-      );
-    } else {
-      _icon = Icon(
-        Icons.star_border,
-        color: Colors.white,
-      );
-    }
-    setState(() {});
-    //API call to make this change
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () {
-        onStarPress();
-      },
-      icon: _icon,
-      splashColor: Colors.transparent,
-      highlightColor: Colors.transparent,
     );
   }
 }

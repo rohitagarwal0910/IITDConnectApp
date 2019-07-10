@@ -13,10 +13,14 @@ class ClubCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Icon _icon;
-    if (_club.isSubbed)
+    String _toolTip;
+    if (_club.isSubbed) {
       _icon = Icon(Icons.remove_circle);
-    else
+      _toolTip = 'Unsubscribe';
+    } else {
       _icon = Icon(Icons.add_circle_outline);
+      _toolTip = 'Subscribe';
+    }
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -25,7 +29,6 @@ class ClubCard extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: Colors.indigo,
-          // borderRadius: BorderRadius.all(Radius.circular(20.0)),
         ),
         padding: EdgeInsets.symmetric(horizontal: 25.0, vertical: 10),
         margin: EdgeInsets.symmetric(vertical: 0.2),
@@ -33,9 +36,11 @@ class ClubCard extends StatelessWidget {
           children: <Widget>[
             Expanded(
               child: Container(
-                child: AutoSizeText(_club.clubName,
-                    style: TextStyle(fontSize: 20, color: Colors.white),
-                    maxLines: 1,),
+                child: AutoSizeText(
+                  _club.clubName,
+                  style: TextStyle(fontSize: 20, color: Colors.white),
+                  maxLines: 1,
+                ),
               ),
             ),
             IconButton(
@@ -44,7 +49,7 @@ class ClubCard extends StatelessWidget {
               },
               icon: _icon,
               color: Colors.white,
-              tooltip: 'Subscribe to Club',
+              tooltip: _toolTip,
               padding: EdgeInsets.all(0),
             ),
           ],

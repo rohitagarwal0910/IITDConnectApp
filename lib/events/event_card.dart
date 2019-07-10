@@ -16,13 +16,16 @@ class EventCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Icon _icon;
+    String _toolTip;
     if (_event.isStarred) {
       _icon = Icon(Icons.star, color: Colors.amberAccent);
+      _toolTip = 'Unstar';
     } else {
       _icon = Icon(
         Icons.star_border,
         color: Colors.white,
       );
+      _toolTip = 'Star';
     }
     return GestureDetector(
       onTap: () {
@@ -70,12 +73,14 @@ class EventCard extends StatelessWidget {
                   onPressed: () {},
                   icon: Icon(Icons.calendar_today),
                   color: Colors.white,
+                  tooltip: 'Add to Calendar',
                 ),
                 IconButton(
                   onPressed: () {
                     _onStarPress(_event);
                   },
                   icon: _icon,
+                  tooltip: _toolTip,
                   splashColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                 ),

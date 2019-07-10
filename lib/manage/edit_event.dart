@@ -309,7 +309,7 @@ void _showDeleteAlert(BuildContext context, Event _event) {
             },
             child: Text(
               'YES',
-              style: TextStyle(color: Colors.white70),
+              style: TextStyle(color: Colors.red[300]),
             ),
           )
         ],
