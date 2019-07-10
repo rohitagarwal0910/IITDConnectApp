@@ -21,6 +21,7 @@ dependencies:
   auto_size_text: ^2.0.1
   intl: ^0.15.8
   datetime_picker_formfield: ^0.2.0
+  validators: ^2.0.0+1
   flutter:
     sdk: flutter
 

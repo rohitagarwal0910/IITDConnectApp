@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/rendering.dart';
 import 'package:intl/intl.dart';
+import 'package:validators/validators.dart';
 
 import '../events/event_class.dart';
 import '../user_class.dart';
@@ -120,38 +121,45 @@ class _EventFormState extends State<EventForm> {
               onSaved: (text) {
                 _imageLink = text;
               },
+              validator: (text) {
+                if (text.isEmpty || isURL(text)) {
+                  return null;
+                } else {
+                  return 'Not a valid URL';
+                }
+              },
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-              RaisedButton(
-                onPressed: () {
-                  showCancelAlert(context);
-                },
-                child: Text('CANCEL'),
-                color: Colors.indigo[100],
-              ),
-              RaisedButton(
-                color: Colors.indigo[400],
-                child: Text(
-                  'SUBMIT',
-                  style: TextStyle(color: Colors.white),
-                ),
-                onPressed: () {
-                  if (_key.currentState.validate()) {
-                    _key.currentState.save();
-                    events[2].add(Event(
-                        eventName: _eventName,
-                        eventBody: user1.adminof.clubName,
-                        venue: _venue,
-                        about: _about,
-                        isBodySub: false,
-                        isStarred: false));
-                    Navigator.pop(context);
-                  }
-                },
-              ),
-            ]),
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  RaisedButton(
+                    onPressed: () {
+                      showCancelAlert(context);
+                    },
+                    child: Text('CANCEL'),
+                    color: Colors.indigo[100],
+                  ),
+                  RaisedButton(
+                    color: Colors.indigo[400],
+                    child: Text(
+                      'SUBMIT',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    onPressed: () {
+                      if (_key.currentState.validate()) {
+                        _key.currentState.save();
+                        events[2].add(Event(
+                            eventName: _eventName,
+                            eventBody: user1.adminof.clubName,
+                            venue: _venue,
+                            about: _about,
+                            isBodySub: false,
+                            isStarred: false));
+                        Navigator.pop(context);
+                      }
+                    },
+                  ),
+                ]),
           ],
         ),
       ),
@@ -199,4 +207,3 @@ Future<bool> showCancelAlert(BuildContext context) {
       ) ??
       false;
 }
-

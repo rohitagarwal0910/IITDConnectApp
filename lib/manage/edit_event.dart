@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:intl/intl.dart';
+import 'package:validators/validators.dart';
 
 import '../events/event_class.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
@@ -179,6 +180,13 @@ class _EditEventFormState extends State<EditEventForm> {
               style: TextStyle(color: Colors.white),
               onSaved: (text) {
                 _imageLink = text;
+              },
+              validator: (text) {
+                if (text.isEmpty || isURL(text)) {
+                  return null;
+                } else {
+                  return 'Not a valid URL';
+                }
               },
             ),
             Row(
