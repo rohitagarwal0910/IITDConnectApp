@@ -9,15 +9,20 @@ import './edit_event.dart';
 
 class MyEventCard extends StatelessWidget {
   final Event _event;
+  final Function _refresh;
 
-  MyEventCard(this._event);
+  MyEventCard(this._event, this._refresh);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => EventInfo(_event)));
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => EventInfo(_event)),
+        ).then((value) {
+          _refresh();
+        });
       },
       child: Container(
         decoration: BoxDecoration(
@@ -60,9 +65,12 @@ class MyEventCard extends StatelessWidget {
                 IconButton(
                   onPressed: () {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => EditEvent(_event)));
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => EditEvent(_event)),
+                    ).then((value) {
+                      _refresh();
+                    });
                   },
                   icon: Icon(
                     Icons.edit,

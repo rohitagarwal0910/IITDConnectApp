@@ -12,20 +12,23 @@ class EditEvent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: GradientAppBar(
-        title: Text('Edit Event'),
-        centerTitle: true,
-        backgroundColorStart: Colors.indigo,
-        backgroundColorEnd: Colors.cyan,
-      ),
-      body: GestureDetector(
-        onTap: () {
-          FocusScope.of(context).requestFocus(FocusNode());
-        },
-        behavior: HitTestBehavior.opaque,
-        child: ListView(
-          children: <Widget>[EditEventForm(_event)],
+    return WillPopScope(
+      onWillPop: () => _showCancelAlert(context),
+      child: Scaffold(
+        appBar: GradientAppBar(
+          title: Text('Edit Event'),
+          centerTitle: true,
+          backgroundColorStart: Colors.indigo,
+          backgroundColorEnd: Colors.cyan,
+        ),
+        body: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).requestFocus(FocusNode());
+          },
+          behavior: HitTestBehavior.opaque,
+          child: ListView(
+            children: <Widget>[EditEventForm(_event)],
+          ),
         ),
       ),
     );
@@ -225,44 +228,45 @@ class _EditEventFormState extends State<EditEventForm> {
   }
 }
 
-void _showCancelAlert(BuildContext context) {
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        backgroundColor: Colors.indigo[600],
-        title: Text(
-          'Cancel editing',
-          style: TextStyle(color: Colors.white),
-        ),
-        content: Text(
-          'Are you sure you want to discard new changes?',
-          style: TextStyle(color: Colors.white),
-        ),
-        actions: <Widget>[
-          FlatButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: Text(
-              'NO',
-              style: TextStyle(color: Colors.white70),
+Future<bool> _showCancelAlert(BuildContext context) {
+  return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            backgroundColor: Colors.indigo[600],
+            title: Text(
+              'Cancel editing',
+              style: TextStyle(color: Colors.white),
             ),
-          ),
-          FlatButton(
-            onPressed: () {
-              Navigator.pop(context);
-              Navigator.pop(context);
-            },
-            child: Text(
-              'YES',
-              style: TextStyle(color: Colors.white70),
+            content: Text(
+              'Are you sure you want to discard new changes?',
+              style: TextStyle(color: Colors.white),
             ),
-          )
-        ],
-      );
-    },
-  );
+            actions: <Widget>[
+              FlatButton(
+                onPressed: () {
+                  Navigator.of(context).pop(false);
+                },
+                child: Text(
+                  'NO',
+                  style: TextStyle(color: Colors.white70),
+                ),
+              ),
+              FlatButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                },
+                child: Text(
+                  'YES',
+                  style: TextStyle(color: Colors.white70),
+                ),
+              )
+            ],
+          );
+        },
+      ) ??
+      false;
 }
 
 void _showDeleteAlert(BuildContext context, Event _event) {

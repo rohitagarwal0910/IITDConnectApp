@@ -8,8 +8,10 @@ import '../edit_event.dart';
 
 class EventInfoCard extends StatelessWidget {
   final Event _event;
+  final Function _refresh;
 
-  EventInfoCard(this._event);
+  EventInfoCard(this._event, this._refresh);
+
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
@@ -68,9 +70,12 @@ class EventInfoCard extends StatelessWidget {
                   FlatButton(
                     onPressed: () {
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => EditEvent(_event)));
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => EditEvent(_event)),
+                      ).then((value) {
+                        _refresh();
+                      });
                     },
                     color: Colors.indigo[400],
                     child: Text(

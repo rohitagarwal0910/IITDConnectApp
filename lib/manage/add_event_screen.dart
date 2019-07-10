@@ -7,20 +7,23 @@ import './add_event_form.dart';
 class AddEvent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: GradientAppBar(
-        title: Text('Add Event'),
-        centerTitle: true,
-        backgroundColorStart: Colors.indigo,
-        backgroundColorEnd: Colors.cyan,
-      ),
-      body: GestureDetector(
-        onTap: () {
-          FocusScope.of(context).requestFocus(FocusNode());
-        },
-        behavior: HitTestBehavior.opaque,
-        child: ListView(
-          children: <Widget>[EventForm()],
+    return WillPopScope(
+      onWillPop: () => showCancelAlert(context),
+      child: Scaffold(
+        appBar: GradientAppBar(
+          title: Text('Add Event'),
+          centerTitle: true,
+          backgroundColorStart: Colors.indigo,
+          backgroundColorEnd: Colors.cyan,
+        ),
+        body: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).requestFocus(FocusNode());
+          },
+          behavior: HitTestBehavior.opaque,
+          child: ListView(
+            children: <Widget>[EventForm()],
+          ),
         ),
       ),
     );

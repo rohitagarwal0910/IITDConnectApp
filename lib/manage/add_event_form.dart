@@ -120,19 +120,13 @@ class _EventFormState extends State<EventForm> {
               onSaved: (text) {
                 _imageLink = text;
               },
-              validator: (text) {
-                if (text.isEmpty)
-                  return 'Required';
-                else
-                  return null;
-              },
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
               RaisedButton(
                 onPressed: () {
-                  showAlert(context);
+                  showCancelAlert(context);
                 },
                 child: Text('CANCEL'),
                 color: Colors.indigo[100],
@@ -165,31 +159,44 @@ class _EventFormState extends State<EventForm> {
   }
 }
 
-void showAlert(BuildContext context) {
-showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        backgroundColor: Colors.indigo[600],
-        title: Text('Cancel making new event', style: TextStyle(color: Colors.white),),
-        content: Text('Are you sure you want to discard this event?', style: TextStyle(color: Colors.white),),
-        actions: <Widget>[
-          FlatButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: Text('NO', style: TextStyle(color: Colors.white70),),
-          ),
-          FlatButton(
-            onPressed: () {
-              Navigator.pop(context);
-              Navigator.pop(context);
-            },
-            child: Text('YES', style: TextStyle(color: Colors.white70),),
-          )
-        ],
-      );
-    },
-  );
+Future<bool> showCancelAlert(BuildContext context) {
+  return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            backgroundColor: Colors.indigo[600],
+            title: Text(
+              'Cancel making new ',
+              style: TextStyle(color: Colors.white),
+            ),
+            content: Text(
+              'Are you sure you want to discard new changes?',
+              style: TextStyle(color: Colors.white),
+            ),
+            actions: <Widget>[
+              FlatButton(
+                onPressed: () {
+                  Navigator.of(context).pop(false);
+                },
+                child: Text(
+                  'NO',
+                  style: TextStyle(color: Colors.white70),
+                ),
+              ),
+              FlatButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                },
+                child: Text(
+                  'YES',
+                  style: TextStyle(color: Colors.white70),
+                ),
+              )
+            ],
+          );
+        },
+      ) ??
+      false;
 }
 
