@@ -20,25 +20,29 @@ class EventsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16.0),
-      margin: EdgeInsets.all(10.0),
-      decoration: BoxDecoration(
-        color: Color(0x99D0D0D0),
-        borderRadius: BorderRadius.all(Radius.circular(30.0)),
-      ),
+      margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 15),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            margin: EdgeInsets.only(bottom: 10),
-            padding: EdgeInsets.symmetric(vertical: 5),
-            child: Text(
-              listTitle,
-              style: TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.w400,
-                color: Colors.grey[900],
-                letterSpacing: 1
-              ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  listTitle,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 15,
+                      letterSpacing: 4),
+                ),
+                Container(
+                  height: 3,
+                  width: 60,
+                  margin: EdgeInsets.symmetric(vertical: 10),
+                  color: Colors.blue,
+                ),
+              ],
             ),
           ),
           Column(

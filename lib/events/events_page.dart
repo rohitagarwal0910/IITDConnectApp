@@ -54,7 +54,7 @@ class EventsPageState extends State<EventsPage> {
       key: PageStorageKey(_title),
       children: <Widget>[
         Container(
-          height: 5,
+          height: 10,
         ),
         EventsList(
           _events[0],
