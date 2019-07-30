@@ -4,7 +4,9 @@ import 'package:gradient_app_bar/gradient_app_bar.dart';
 
 import './events/events_tab.dart';
 import './clubs/clubs_tab.dart';
+import './manage/manage_tab.dart';
 import './profile_icon.dart';
+import './user_class.dart';
 
 void main() => runApp(MyApp());
 
@@ -53,6 +55,13 @@ class MyAppState extends State<MyApp> with TickerProviderStateMixin {
         title: Text('Events'),
       ),
     ];
+    if (user1.isAdmin) {
+      _tabs.add(ManageTab());
+      _navBarItems.add(BottomNavigationBarItem(
+        icon: Icon(Icons.edit),
+        title: Text('Manage'),
+      ));
+    }
     super.initState();
   }
 
