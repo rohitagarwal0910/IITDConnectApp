@@ -4,10 +4,10 @@ import './event_class.dart';
 import './events_list.dart';
 
 class EventsPage extends StatefulWidget {
-  final List<List<Event>> _events = events;
+  final List<List<Event>> _events;
   final String _title;
 
-  EventsPage(this._title);
+  EventsPage(this._title, this._events);
 
   @override
   State<StatefulWidget> createState() {
