@@ -15,61 +15,67 @@ Future<List<List<List<Event>>>> getEvents() async {
 
   if (response.statusCode == 200) {
     var parsedJson = json.decode(response.body);
-    print(parsedJson);
-    List<List<Event>> today = List<List<Event>>(3);
-    List<List<Event>> tomorrow = List<List<Event>>(3);
-    List<List<Event>> upcoming = List<List<Event>>(3);
-    for (int i = 0; i < parsedJson.length; i++) {
+    print(parsedJson["data"]["events"][0]);
+    List<List<Event>> today = List<List<Event>>.generate(3, (i) => []);
+    List<List<Event>> tomorrow = List<List<Event>>.generate(3, (i) => []);
+    List<List<Event>> upcoming = List<List<Event>>.generate(3, (i) => []);
+    for (int i = 0; i < parsedJson["data"]["events"].length; i++) {
       Event ev = Event.fromJson(parsedJson["data"]["events"][i]);
-      bool isToday = (DateTime.now().difference(ev.startsAt).inDays >= 0 &&
-          DateTime.now().difference(ev.endsAt).inDays <= 0);
-      bool isTommorow = (DateTime.now()
-                  .add(Duration(days: 1))
-                  .difference(ev.startsAt)
-                  .inDays >=
-              0 &&
-          DateTime.now().add(Duration(days: 1)).difference(ev.endsAt).inDays <=
-              0);
-      bool isUpcoming =
-          (DateTime.now().add(Duration(days: 1)).difference(ev.endsAt).inDays <
-              0);
-      if (isToday) {
-        if (ev.isStarred)
+
+    //   bool isToday = (DateTime.now().difference(ev.startsAt).inDays >= 0 &&
+    //       DateTime.now().difference(ev.endsAt).inDays <= 0);
+    //   bool isTommorow = (DateTime.now()
+    //               .add(Duration(days: 1))
+    //               .difference(ev.startsAt)
+    //               .inDays >=
+    //           0 &&
+    //       DateTime.now().add(Duration(days: 1)).difference(ev.endsAt).inDays <=
+    //           0);
+    //   bool isUpcoming =
+    //       (DateTime.now().add(Duration(days: 1)).difference(ev.endsAt).inDays <
+    //           0);
+    //   if (isToday) {
+    //     if (ev.isStarred)
+    print("object");
           today[0].add(ev);
-        else if (ev.isBodySub)
+          print("object");
+    //     else if (ev.isBodySub)
           today[1].add(ev);
-        else
+    //     else
           today[2].add(ev);
-      }
-      if (isTommorow) {
-        if (ev.isStarred)
+    //   }
+    //   if (isTommorow) {
+    //     if (ev.isStarred)
           tomorrow[0].add(ev);
-        else if (ev.isBodySub)
+    //     else if (ev.isBodySub)
           tomorrow[1].add(ev);
-        else
+    //     else
           tomorrow[2].add(ev);
-      }
-      if (isUpcoming) {
-        if (ev.isStarred)
+    //   }
+    //   if (isUpcoming) {
+    //     if (ev.isStarred)
           upcoming[0].add(ev);
-        else if (ev.isBodySub)
+    //     else if (ev.isBodySub)
           upcoming[1].add(ev);
-        else
+    //     else
           upcoming[2].add(ev);
-      }
+    //   }
+    // }
+    // for (int j = 0; j < 3; j++) {
+    //   today[j].sort((a, b) {
+    //     return a.startsAt.compareTo(b.startsAt);
+    //   });
+    //   tomorrow[j].sort((a, b) {
+    //     return a.startsAt.compareTo(b.startsAt);
+    //   });
+    //   upcoming[j].sort((a, b) {
+    //     return a.startsAt.compareTo(b.startsAt);
+    //   });
+
     }
-    for (int j = 0; j < 3; j++) {
-      today[j].sort((a, b) {
-        return a.startsAt.compareTo(b.startsAt);
-      });
-      tomorrow[j].sort((a, b) {
-        return a.startsAt.compareTo(b.startsAt);
-      });
-      upcoming[j].sort((a, b) {
-        return a.startsAt.compareTo(b.startsAt);
-      });
-    }
+    print("sibhjn");
     return [today, tomorrow, upcoming];
+    // return [[[ev],[],[],],[[],[],[],],[[],[],[],]];
   } else {
     throw Exception('Failed to load events');
   }
@@ -87,8 +93,10 @@ Widget makePage(Future fut, int toBuild, String title) {
         );
       }
 
-      return CircularProgressIndicator(
-        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+      return Center(
+        child: CircularProgressIndicator(
+          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+        ),
       );
     },
   );
