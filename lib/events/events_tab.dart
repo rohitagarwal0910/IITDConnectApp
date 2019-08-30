@@ -7,15 +7,20 @@ import './events_page.dart';
 import './event_class.dart';
 
 Future<List<List<List<Event>>>> getEvents() async {
-  final response = await http.get("localhost:5000");
+  final response =
+      await http.get("http://192.168.43.231:5000/api/events", headers: {
+    "authorization":
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkNWNjZGJhY2UyMmJmYzI2ZjNmODI3NCIsImlhdCI6MTU2NzE0NzA2MCwiZXhwIjoxNTY3NzUxODYwfQ.1vZUiNKMhvKt_J-I0FmuZgVJVtlJge8PqSLt_wa9H40"
+  });
 
   if (response.statusCode == 200) {
     var parsedJson = json.decode(response.body);
+    print(parsedJson);
     List<List<Event>> today = List<List<Event>>(3);
     List<List<Event>> tomorrow = List<List<Event>>(3);
     List<List<Event>> upcoming = List<List<Event>>(3);
     for (int i = 0; i < parsedJson.length; i++) {
-      Event ev = Event.fromJson(parsedJson[i]);
+      Event ev = Event.fromJson(parsedJson["data"]["events"][i]);
       bool isToday = (DateTime.now().difference(ev.startsAt).inDays >= 0 &&
           DateTime.now().difference(ev.endsAt).inDays <= 0);
       bool isTommorow = (DateTime.now()
@@ -31,7 +36,7 @@ Future<List<List<List<Event>>>> getEvents() async {
       if (isToday) {
         if (ev.isStarred)
           today[0].add(ev);
-        else if (ev.eventBody.isSubbed)
+        else if (ev.isBodySub)
           today[1].add(ev);
         else
           today[2].add(ev);
@@ -39,7 +44,7 @@ Future<List<List<List<Event>>>> getEvents() async {
       if (isTommorow) {
         if (ev.isStarred)
           tomorrow[0].add(ev);
-        else if (ev.eventBody.isSubbed)
+        else if (ev.isBodySub)
           tomorrow[1].add(ev);
         else
           tomorrow[2].add(ev);
@@ -47,7 +52,7 @@ Future<List<List<List<Event>>>> getEvents() async {
       if (isUpcoming) {
         if (ev.isStarred)
           upcoming[0].add(ev);
-        else if (ev.eventBody.isSubbed)
+        else if (ev.isBodySub)
           upcoming[1].add(ev);
         else
           upcoming[2].add(ev);

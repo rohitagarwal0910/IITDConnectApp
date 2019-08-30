@@ -35,7 +35,7 @@ class EventInfoCard extends StatelessWidget {
                     maxLines: 1,
                   ),
                   AutoSizeText(
-                    _event.eventBody.clubName,
+                    _event.eventBody,
                     style: TextStyle(color: Colors.white, fontSize: 15),
                     maxLines: 1,
                   ),
