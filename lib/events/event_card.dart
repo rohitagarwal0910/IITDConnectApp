@@ -31,7 +31,7 @@ class EventCard extends StatelessWidget {
       onTap: () {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => EventInfo(_event)));
-      },
+            },
       child: Container(
         decoration: BoxDecoration(
           color: Colors.indigo,

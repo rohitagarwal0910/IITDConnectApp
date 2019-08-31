@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:iitd_connect_flutter/events/events_page.dart';
 
 import '../event_class.dart';
+import 'package:iitd_connect_flutter/globals.dart';
 
 class StarButton extends StatefulWidget {
   final Event _event;
@@ -39,21 +41,7 @@ class StarButtonState extends State<StarButton> {
 
   void onStarPress() {
     event.isStarred = !event.isStarred;
-    if (event.isStarred) {
-      events[0].add(event);
-      if (event.isBodySub) {
-        events[1].remove(event);
-      } else {
-        events[2].remove(event);
-      }
-    } else {
-      events[0].remove(event);
-      if (event.isBodySub) {
-        events[1].add(event);
-      } else {
-        events[2].add(event);
-      }
-    }
+    refreshLists(event);
     if (event.isStarred) {
       _icon = Icon(
         Icons.star,

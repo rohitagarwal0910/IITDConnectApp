@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
@@ -8,7 +9,7 @@ import './club_class.dart';
 import './clubs_list.dart';
 
 Future<List<List<Club>>> getClubs() async {
-  final response = await http.get(url);
+  final response = await http.get("url");
 
   if (response.statusCode == 200) {
     var parsedJson = json.decode(response.body);
@@ -95,7 +96,7 @@ class ClubsTabState extends State<ClubsTab> {
           );
         } else if (snapshot.hasError) {
           return Center(
-            child: Text("Some Error Occured"),
+            child: Text("Some Error Occured", style: TextStyle(color: Colors.white70),),
           );
         }
 

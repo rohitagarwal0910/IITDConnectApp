@@ -17,6 +17,27 @@ class EventsList extends StatelessWidget {
     this._onStarPress,
   );
 
+  Widget renderList() {
+    if (_events.isEmpty) {
+      return Container(
+        margin: EdgeInsets.all(25),
+        child: Center(
+          child: Text(
+            "No Events",
+            style: TextStyle(
+              color: Colors.white70,
+            ),
+          ),
+        ),
+      );
+    } else {
+      return Column(
+        children:
+            _events.map((element) => EventCard(element, _onStarPress,)).toList(),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -45,11 +66,7 @@ class EventsList extends StatelessWidget {
               ],
             ),
           ),
-          Column(
-            children: _events
-                .map((element) => EventCard(element, _onStarPress))
-                .toList(),
-          )
+          renderList()
         ],
       ),
 

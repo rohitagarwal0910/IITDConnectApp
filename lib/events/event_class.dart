@@ -6,8 +6,8 @@ class Event {
   String eventName;
   String eventBody;
   String venue = "LHC";
-  DateTime startsAt = DateTime.now();
-  DateTime endsAt = DateTime.now();
+  DateTime startsAt;
+  DateTime endsAt;
   String about;
   String imageLink;
   bool isStarred;
@@ -19,24 +19,27 @@ class Event {
     this.eventBody,
     this.venue,
     this.about,
-    // this.startsAt,
-    // this.endsAt,
+    DateTime start = null,
+    DateTime end = null,
     this.isStarred = false,
     this.isBodySub = false,
     this.imageLink = 'https://picsum.photos/250?image=10',
     // this.updates
-  });
+  }) {
+      this.startsAt = (start == null)? DateTime.now():start;
+      this.endsAt = (end == null)? this.startsAt.add(Duration(days: 1)):end;
+  }
 
   factory Event.fromJson(Map<String,dynamic> json) {
     // DateTime startDate = DateFormat('d/M/y').parse("1/12/2045");
     // DateTime startDate = DateFormat('d/M/y hh:mm').parse(json["event"]["startDate"]);
     // DateTime endDate = DateFormat('d/M/y hh:mm').parse(json["event"]["startDate"]);
-    print("dsbhhnsjn");
+    DateTime startDate = DateTime.parse(json["startDate"]);
     return Event(
       eventName: json["name"],
       eventBody: json["body"],
       // imageLink: json["imageLink"],
-      // startsAt: startDate,
+      start: startDate,
       // endsAt: endDate,
       // updates: json["updates"],
       about: json["about"],

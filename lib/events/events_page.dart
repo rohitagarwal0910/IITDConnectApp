@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:iitd_connect_flutter/events/events_tab.dart';
+import 'package:iitd_connect_flutter/globals.dart';
 
 import './event_class.dart';
 import './events_list.dart';
@@ -6,8 +8,9 @@ import './events_list.dart';
 class EventsPage extends StatefulWidget {
   final List<List<Event>> _events;
   final String _title;
+  final Function reload;
 
-  EventsPage(this._title, this._events);
+  EventsPage(this._title, this._events, this.reload);
 
   @override
   State<StatefulWidget> createState() {
@@ -18,38 +21,34 @@ class EventsPage extends StatefulWidget {
 class EventsPageState extends State<EventsPage> {
   List<List<Event>> _events;
   String _title;
+  Function reload;
 
   @override
   void initState() {
     _events = widget._events;
     _title = widget._title;
+    reload = reload;
+    for (int j = 0; j < 3; j++) {
+      _events[j].sort((a, b) {
+        return a.startsAt.compareTo(b.startsAt);
+      });
+    }
     super.initState();
   }
 
   starEvent(Event event) {
     event.isStarred = !event.isStarred;
-    if (event.isStarred) {
-      _events[0].add(event);
-      if (event.isBodySub) {
-        _events[1].remove(event);
-      } else {
-        _events[2].remove(event);
-      }
-    } else {
-      _events[0].remove(event);
-      if (event.isBodySub) {
-        _events[1].add(event);
-      } else {
-        _events[2].add(event);
-      }
-    }
+    refreshLists(event);
     setState(() {});
     // Add API Call to make this change
   }
 
   @override
   Widget build(BuildContext context) {
-    return 
+    return RefreshIndicator(
+      // key: ,
+      onRefresh: () async {await reload();},
+    child:
     ListView(
       key: PageStorageKey(_title),
       children: <Widget>[
@@ -91,6 +90,6 @@ class EventsPageState extends State<EventsPage> {
       //       EventsList(_events[2], 'OTHER', starEvent),
       //     ],
       //   ),
-    );
+    ));
   }
 }

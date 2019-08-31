@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
-// import './my_event_info/event_info_screen.dart';
+import './my_event_info/event_info_screen.dart';
+// import '../events/event_info/event_info_screen.dart';
 import '../events/event_class.dart';
 import '../events/event_card_contents/event_time.dart';
 import '../events/event_card_contents/event_venue.dart';
 import './edit_event.dart';
-import '../events/event_info/event_info_screen.dart';
 
 class MyEventCard extends StatelessWidget {
   final Event _event;
