@@ -3,21 +3,31 @@ class Club {
   String clubDept;
   String clubAbout;
   bool isSubbed;
+  String id;
 
-  Club({this.clubName, this.clubDept, this.clubAbout, this.isSubbed});
+  Club({this.clubName, this.clubDept, this.clubAbout, this.isSubbed, this.id});
 
   factory Club.fromJson(Map<String, dynamic> json) {
     return Club(
-      clubName: json["club"]["name"],
-      clubAbout: json["club"]["about"],
-      isSubbed: json["club"]["isSubbed"],
-      clubDept: json["club"]["dept"],
+      clubName: json["name"],
+      clubAbout: json["about"],
+      isSubbed: json["isSub"],
+      clubDept: json["deptartment"],
+      id: json["id"]
     );
+  }
+
+  Map toMap() {
+    var map = new Map<String, dynamic>();
+    map["name"] = clubName;
+    map["about"] = clubAbout;
+    map["isSub"] = isSubbed.toString();
+    map["department"] = clubDept;
   }
 }
 
 var dummyClub1 =
-    Club(clubName: 'Club1', clubDept: 'Dept1', clubAbout: 'wqewdqwe', isSubbed: false);
+    Club(clubName: 'devclub', clubDept: 'CSE', clubAbout: 'software development club', isSubbed: false, id:"5d6935a5f616bc2d27fa1e72");
 var dummyClub2 =
     Club(clubName: 'Club2', clubDept: 'Dept2', clubAbout: 'wqewdqwe', isSubbed: false);
 var dummyClub3 =

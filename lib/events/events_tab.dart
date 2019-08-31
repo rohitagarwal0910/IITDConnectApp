@@ -24,7 +24,8 @@ Future<List<List<List<Event>>>> getEvents() async {
     }
     for (int i = 0; i < parsedJson["data"]["events"].length; i++) {
       Event ev = Event.fromJson(parsedJson["data"]["events"][i]);
-
+      print(ev.startsAt.toIso8601String());
+      print(ev.toMap());
       bool isToday = (DateTime.now().difference(ev.startsAt).inDays >= 0 &&
           DateTime.now().difference(ev.endsAt).inDays <= 0);
       bool isTommorow = (DateTime.now()

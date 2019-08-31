@@ -3,9 +3,24 @@ import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/rendering.dart';
 import 'package:intl/intl.dart';
 import 'package:validators/validators.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'dart:async';
 
 import '../events/event_class.dart';
 import '../user_class.dart';
+
+Future<Event> addEventRequest(Event event) async {
+  final response = await http.post(
+    "http://192.168.43.231:5000/api/events",
+    headers: {
+      "authorization":
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkNWNjZGJhY2UyMmJmYzI2ZjNmODI3NCIsImlhdCI6MTU2NzE0NzA2MCwiZXhwIjoxNTY3NzUxODYwfQ.1vZUiNKMhvKt_J-I0FmuZgVJVtlJge8PqSLt_wa9H40"
+    },
+    body: event.toMap()
+  );
+  return response.body;
+}
 
 class EventForm extends StatefulWidget {
   @override

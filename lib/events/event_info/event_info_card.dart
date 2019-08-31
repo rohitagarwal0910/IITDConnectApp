@@ -35,7 +35,7 @@ class EventInfoCard extends StatelessWidget {
                     maxLines: 1,
                   ),
                   AutoSizeText(
-                    _event.eventBody,
+                    _event.eventBody.clubName,
                     style: TextStyle(color: Colors.white, fontSize: 15),
                     maxLines: 1,
                   ),
@@ -71,7 +71,7 @@ class EventInfoCard extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => ClubInfo(dummyClub1)));
+                              builder: (context) => ClubInfo(_event.eventBody)));
                     },
                     child: Text('SEE CLUB'),
                     color: Colors.indigo[400],

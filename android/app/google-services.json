@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "990564576248",
+    "firebase_url": "https://iitd-connect-b0113.firebaseio.com",
+    "project_id": "iitd-connect-b0113",
+    "storage_bucket": "iitd-connect-b0113.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:990564576248:android:d2917a5daf8d4261",
+        "android_client_info": {
+          "package_name": "com.example.iitd_connect_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "990564576248-2a49r9cheki9fl6hqqdjvcaunetd2nit.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBy3NW9zMmuPiN1T6H_Ulw1iLbjt9MOonE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "990564576248-2a49r9cheki9fl6hqqdjvcaunetd2nit.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

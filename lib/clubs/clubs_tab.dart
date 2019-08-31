@@ -9,14 +9,18 @@ import './club_class.dart';
 import './clubs_list.dart';
 
 Future<List<List<Club>>> getClubs() async {
-  final response = await http.get("url");
+  final response =
+      await http.get("http://192.168.43.231:5000/api/body", headers: {
+    "authorization":
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkNWNjZGJhY2UyMmJmYzI2ZjNmODI3NCIsImlhdCI6MTU2NzE0NzA2MCwiZXhwIjoxNTY3NzUxODYwfQ.1vZUiNKMhvKt_J-I0FmuZgVJVtlJge8PqSLt_wa9H40"
+  });
 
   if (response.statusCode == 200) {
     var parsedJson = json.decode(response.body);
     List<Club> subbedClubs = List<Club>();
     List<Club> otherClubs = List<Club>();
-    for (int i = 0; i < parsedJson.length; i++) {
-      Club club = Club.fromJson(parsedJson[i]);
+    for (int i = 0; i < parsedJson["bodies"].length; i++) {
+      Club club = Club.fromJson(parsedJson["bodies"][i]);
       if (club.isSubbed)
         subbedClubs.add(club);
       else
@@ -96,7 +100,10 @@ class ClubsTabState extends State<ClubsTab> {
           );
         } else if (snapshot.hasError) {
           return Center(
-            child: Text("Some Error Occured", style: TextStyle(color: Colors.white70),),
+            child: Text(
+              "Some Error Occured",
+              style: TextStyle(color: Colors.white70),
+            ),
           );
         }
 
